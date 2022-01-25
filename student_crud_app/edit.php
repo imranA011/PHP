@@ -74,13 +74,12 @@ if (isset($_GET['status'])) {
                         <strong>You are not old enough to enter this app.</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>';                
                 } else {
-                    if(isset($u_photo['name'])){
+                    if(empty($u_photo['name'])){
+                          $new_photo_name = $_POST['old_photo'];                                                      
+                    }else{
                         $std_u_data = $student->uploadFile($u_photo, 'assets/img/');
                         $new_photo_name = $std_u_data['file_name']; 
-                        unlink("assets/img/". $_POST['old_photo']); 
-                                                                          
-                    }else{                      
-                        $new_photo_name = $_POST['old_photo'];                         
+                        unlink("assets/img/". $_POST['old_photo']);                         
                     } 
                     
                     $student->updateUser($showId, $u_name, $u_email, $u_gender, $u_age, $u_phone, $u_location, $new_photo_name); 
@@ -90,8 +89,6 @@ if (isset($_GET['status'])) {
                          
                 } 
                 }
-                
-               
 
                 ?>
 
@@ -176,7 +173,7 @@ if (isset($_GET['status'])) {
                             <div>                           
                                 <img class="img-thumbnail" style="width:150px; height:100px"
                                 src="assets/img/<?= $editData[0]['s_photo']; ?>" alt="photo">
-                                <input type="" name="old_photo" value="<?= $editData[0]['s_photo'];?>">
+                                <input type="hidden" name="old_photo" value="<?= $editData[0]['s_photo'];?>">
                             </div>
                             <div class="input-group">
                                 <input type="file" class="form-control" name="new_photo" id="userInputPhoto">
