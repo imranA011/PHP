@@ -3,7 +3,6 @@
 include "classes/Student.php";
 
 $student = new Student();
-$studentFile = new Student();
 
 $search ='';
 if(isset($_POST['search-btn'])){
