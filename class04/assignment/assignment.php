@@ -26,7 +26,27 @@ class Assignment{
         echo str_replace("APPLICATION", "WEBSITE",  $result);   
     }
     
+    public function lowestWord()
+    {
+        $str = $this->courseName;
+        $words = explode(" ", $str);
+        $lowestWord = $words[0];
+        foreach($words as $word)
+        {
+            if(strlen($word) < strlen($lowestWord))
+            {
+                $lowestWord = $word ;
+            }
+        }
+        echo $lowestWord ;
+    }
+    
 }
+
+$obj = new Assignment();
+$obj->countWord();
+$obj->replaceWord();
+$obj->lowestWord();
 
 
 
